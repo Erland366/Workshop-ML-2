@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-COPY ./model /model
+COPY ./model /app/model
 
 COPY ./app /app
 

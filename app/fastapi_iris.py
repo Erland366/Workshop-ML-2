@@ -13,15 +13,15 @@ class Iris(BaseModel):
     petal_length : float
     petal_width : float
     
-app = FastAPI(title="Iris ML API", description="API for iris dataset ml model", version="1.0")
+app = FastAPI(title="Iris ML API", description="API for iris dataset ml model")
 
-model = tf.keras.models.load_model("../model/TF-Iris.h5")
+model = tf.keras.models.load_model("model/TF-Iris.h5")
 
 def get_prediction(data):
     data_raw = data.dict()
-    data_tensor = tf.constant(list(data_raw.values()))[None]
-    predict = model.predict(data_tensor[0])
-    return {"prediction" : np.argmax(predict)}
+    data_tensor = tf.constant(list(data_raw.values()), dtype=tf.float32)[None]
+    predict = model.predict(data_tensor)
+    return {"prediction" : float(np.argmax(predict))}
 
 @app.get("/")
 def read_root():
