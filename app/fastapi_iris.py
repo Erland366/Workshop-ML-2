@@ -5,7 +5,6 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 import tensorflow as tf
 import joblib
-import pandas as pd
 import numpy as np
 
 class Iris(BaseModel):
